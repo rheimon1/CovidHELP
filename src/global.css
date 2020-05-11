@@ -30,6 +30,17 @@ form input {
   padding: 0 24px;
 }
 
+form textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  color: #333;
+  border: 1px solid #dcdce6;
+  border-radius: 8px;
+  padding: 16px 24px;
+  line-height: 24px;
+}
+
 .button {
   width: 100%;
   height: 60px;
@@ -63,7 +74,7 @@ form input {
 }
 
 .back-link svg {
-  margin-top: 8px;
+  margin-right: 8px;
 }
 
 .back-link:hover {

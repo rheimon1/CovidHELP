@@ -1,4 +1,4 @@
-.register-container {
+.new-order-container {
   width: 100%;
   max-width: 1120px;
   height: 100vh;
@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-.register-container .content {
+.new-order-container .content {
   width: 100%;
   padding: 90px;
   background: #f0f0f5;
@@ -21,35 +21,28 @@
   align-items: center;
 }
 
-.register-container .content section {
+.new-order-container .content section {
   width: 100%;
   max-width: 380px;
 }
 
-.register-container .content section h1 {
+.new-order-container .content section h1 {
   margin: 64px 0 32px;
   font-size: 32px;
 }
 
-.register-container .content section p {
+.new-order-container .content section p {
   font-size: 18px;
   color: #737380;
   line-height: 32px;
 }
 
-.register-container .content form {
+.new-order-container .content form {
   width: 100%;
   max-width: 380px;
 }
 
-.register-container .content form input {
+.new-order-container .content form input, 
+.new-order-container .content form textarea {
   margin-top: 8px;
-}
-
-.register-container .content form .input-group {
-  display: flex;
-}
-
-.register-container .content form .input-group input + input {
-  margin-left: 8px;
 }
