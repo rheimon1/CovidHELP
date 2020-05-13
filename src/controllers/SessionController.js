@@ -7,7 +7,7 @@ module.exports = {
     const { email, password } = request.body;
 
     if(!email || !password) {
-      return response.status(400).json({ error: 'Email or Password not posted!' });
+      return response.status(400).json({ error: 'Email or Password not posted' });
     }
 
     const user = await connection('users')
@@ -20,7 +20,7 @@ module.exports = {
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return response.status(401).json({ error: 'Password inválid' })
+      return response.status(401).json({ error: 'Inválid password' })
     }
 
     const { id, name, whatsapp, city, uf } = user;
