@@ -36,8 +36,6 @@ module.exports = {
         city: city,
         uf: uf,
       },
-      iat: now,
-      exp: now + (60 * 60)
     };
     
 

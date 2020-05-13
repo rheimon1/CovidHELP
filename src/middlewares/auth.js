@@ -1,22 +1,22 @@
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 
-module.exports = async (req, res, next) => {
-  const authHeader = req.headers.authorization;
+module.exports = async (request, response, next) => {
+  const authHeader = request.headers['authorization'];
 
-  if (!authHeader) {
-    return res.status(401).send({ error: "No token provided" });
+  const token = authHeader.split(' ')[0];
+
+  if (token == null) {
+    return response.status(401).send({ error: "No token provided" });
   }
-
-  const [scheme, token] = authHeader.split(" ");
 
   try {
     const decoded = await promisify(jwt.verify)(token, process.env.APP_SECRET);
 
-    // req.userId = decoded.id;
+    email = decoded.sub.email;
 
     return next();
   } catch (err) {
-    return res.status(401).send({ error: "Token invalid" });
+    return response.status(401).send({ error: "Token invalid" });
   }
 };

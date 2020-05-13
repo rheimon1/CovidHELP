@@ -12,13 +12,12 @@ const routes = express.Router();
 routes.get('/users', UserController.index);
 routes.post('/users', UserController.create);
 
-routes.get('/profile/', ProfileController.index);
+routes.get('/profile/', authMiddleware, ProfileController.index);
 
 routes.post('/session', SessionController.create);
-routes.use(authMiddleware);
 
-routes.get('/incidents', IncidentController.index);
-routes.post('/incidents', IncidentController.create);
-routes.delete('/incidents/:id', IncidentController.delete);
+routes.get('/incidents', authMiddleware, IncidentController.index);
+routes.post('/incidents', authMiddleware, IncidentController.create);
+routes.delete('/incidents/:id', authMiddleware, IncidentController.delete);
 
 module.exports = routes;
