@@ -1,10 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
+import { isAuthenticated } from './services/auth';
 
 import Logon from './pages/Logon';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import NewOrder from './pages/NewOrder';
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+      ) 
+    }
+  />
+);
+
 
 export default function Routes() {
   return (
@@ -12,8 +28,8 @@ export default function Routes() {
       <Switch>
         <Route path="/" exact component={Logon} />
         <Route path="/register" component={Register} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/orders/new" component={NewOrder} />
+        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/orders/new" component={NewOrder} />
       </Switch>
     </BrowserRouter>
   );

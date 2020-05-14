@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
 
+import { getToken } from '../../services/auth';
 import api from '../../services/api';
 
 import './styles.css';
@@ -13,18 +14,21 @@ export default function Profile() {
 
   const history = useHistory();
 
+  const token = getToken();
+
   const userName = localStorage.getItem('userName');
   const userEmail = localStorage.getItem('userEmail');
 
   useEffect(() => {
     api.get('profile', {
       headers: {
-        Authorization: userEmail,
+        Authorization: token,
       }
     }).then(response => {
+      console.log(response.data);
       setOrders(response.data);
     })
-  }, [userEmail]);
+  }, [token]);
 
   async function handleDeleteOrder(id) {
     try {
@@ -52,7 +56,7 @@ export default function Profile() {
         <img src={logoImg} alt="Covid"/>
         <span>Bem vindo, {userName}</span>
 
-        <Link className="button" to="/orders/new">Cadastrar pedido</Link>
+        <Link className="button" to="/incidents/new">Cadastrar pedido</Link>
         <button onClick={handleLogout} type="button">
           <FiPower size={18} color="#451269" />
         </button>

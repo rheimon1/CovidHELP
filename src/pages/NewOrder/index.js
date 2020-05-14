@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft  } from 'react-icons/fi';
 
 import api from '../../services/api';
+import { getToken } from '../../services/auth';
 
 import './styles.css';
 
@@ -14,7 +15,7 @@ export default function NewOrder() {
 
   const history = useHistory();
 
-  const userEmail = localStorage.getItem('userEmail');
+  const auth = localStorage.getItem(getToken);
 
   async function handleNewOrder(e) {
     e.preventDefault();
@@ -27,7 +28,7 @@ export default function NewOrder() {
     try {
       await api.post('incidents', data, {
         headers: {
-          Authorization: userEmail
+          Authorization: auth
         }
       })
 

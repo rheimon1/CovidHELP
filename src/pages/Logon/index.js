@@ -2,8 +2,10 @@ import React, { useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 
-import './styles.css';
 import api from '../../services/api';
+import { login } from '../../services/auth';
+
+import './styles.css';
 
 import covidImg from '../../assets/logoImg.png';
 
@@ -15,15 +17,18 @@ export default function Logon() {
   async function handleLogin(e) {
     e.preventDefault();
 
-    try{
-      const response = await api.post('sessions', { email, password });
-    
-      localStorage.setItem('userName', response.data.name);
-      localStorage.setItem('userEmail', response.data.email);
+    if (!email || !password) {
+      alert('Preencha e-mail e senha para continuar!');
+    } else {
+      try{
+        const response = await api.post('session', { email, password });
 
-      history.push('/profile');
-    } catch (err) {
-      alert('Falha no login, tente novamente');
+        login(response.data.token);
+        
+        history.push('/profile');
+      } catch (err) {
+        alert('Falha no login, tente novamente');
+      }
     }
   }
 
