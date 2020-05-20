@@ -15,7 +15,7 @@ export default function NewOrder() {
 
   const history = useHistory();
 
-  const auth = localStorage.getItem(getToken);
+  const token = getToken();
 
   async function handleNewOrder(e) {
     e.preventDefault();
@@ -25,10 +25,11 @@ export default function NewOrder() {
       description,
     };
 
+
     try {
       await api.post('incidents', data, {
         headers: {
-          Authorization: auth
+          Authorization: token,
         }
       })
 

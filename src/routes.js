@@ -29,7 +29,7 @@ export default function Routes() {
         <Route path="/" exact component={Logon} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/profile" component={Profile} />
-        <PrivateRoute path="/orders/new" component={NewOrder} />
+        <PrivateRoute path="/incidents/new" component={NewOrder} />
       </Switch>
     </BrowserRouter>
   );

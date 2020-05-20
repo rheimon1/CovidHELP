@@ -10,8 +10,8 @@ import './styles.css';
 import covidImg from '../../assets/logoImg.png';
 
 export default function Logon() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
 
   async function handleLogin(e) {
@@ -22,6 +22,11 @@ export default function Logon() {
     } else {
       try{
         const response = await api.post('session', { email, password });
+        
+        const { id, name } = response.data.jwtData.sub; 
+
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userID', id);
 
         login(response.data.token);
         

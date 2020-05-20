@@ -10,14 +10,13 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function Profile() {
-  const [orders, setOrders] = useState([]);
+  const [incidents, setincidents] = useState([]);
 
   const history = useHistory();
 
   const token = getToken();
 
   const userName = localStorage.getItem('userName');
-  const userEmail = localStorage.getItem('userEmail');
 
   useEffect(() => {
     api.get('profile', {
@@ -25,20 +24,18 @@ export default function Profile() {
         Authorization: token,
       }
     }).then(response => {
-      console.log(response.data);
-      setOrders(response.data);
+      setincidents(response.data);
     })
   }, [token]);
 
-  async function handleDeleteOrder(id) {
+  async function handleDeleteIncident(id) {
     try {
       await api.delete(`incidents/${id}`, {
         headers: {
-          Authorization: userEmail,
+          Authorization: token,
         }
       });
-
-      setOrders(orders.filter(order => order.id !== id)) 
+      setincidents(incidents.filter(incident => incident.id !== id)) 
     } catch (error) {
       alert('Erro ao deletar pedido, tente novamente.');
     }
@@ -65,15 +62,15 @@ export default function Profile() {
       <h1>Pedidos cadastrados</h1>
 
       <ul>
-        {orders.map(order => (
-          <li key={order.id}>
+        {incidents.map(incident => ( 
+          <li key={incident.id}>
             <strong>PEDIDO:</strong>
-            <p>{order.title}</p>
+            <p>{incident.title}</p>
 
             <strong>DESCRIÇÃO</strong>
-            <p>{order.description}</p>
+            <p>{incident.description}</p>
 
-            <button onClick={() => handleDeleteOrder(order.id)} type="button">
+            <button onClick={() => handleDeleteIncident(incident.id)} type="button">
               <FiTrash2 size={20} color="#a8a8b3" />
             </button>
           </li>
