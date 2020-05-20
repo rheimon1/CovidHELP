@@ -26,7 +26,9 @@ module.exports = {
 
    async create(request, response) {
      const { title, description } = request.body;
-     const user_id = request.headers.user_id;
+     const dataUser = response.getHeader('x-access');
+    
+     const user_id = dataUser.sub.id;
 
      const [id] = await connection('incidents').insert({
         title,
@@ -39,14 +41,16 @@ module.exports = {
  
    async delete(request, response) {
      const { id } = request.params;
-     const user_id = request.headers.user_id;
+     const dataUser = response.getHeader('x-access');
+    
+     const user = dataUser.sub;
 
      const incident = await connection('incidents')
       .where('id', id)
       .select('user_id')
       .first();
     
-    if(incident.user_id != user_id) 
+    if(incident.user_id != user.id) 
       return response.status(401).json({ error: 'Operation not permitted.' });
       
     await connection('incidents').where('id', id).delete();

@@ -13,7 +13,7 @@ module.exports = async (request, response, next) => {
   try {
     const decoded = await promisify(jwt.verify)(token, process.env.APP_SECRET);
 
-    email = decoded.sub.email;
+    response.setHeader('x-access', decoded);
 
     return next();
   } catch (err) {

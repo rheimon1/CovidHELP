@@ -41,6 +41,6 @@ module.exports = {
 
     const token = await Token.generate(jwtData);
     
-    return response.status(200).json({ token })
+    return response.status(200).json({ jwtData, token })
   }
 }
