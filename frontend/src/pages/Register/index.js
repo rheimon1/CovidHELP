@@ -5,7 +5,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import api from '../../services/api';
 import './styles.css';
 
-import LogoImg from '../../assets/logo.svg';
+import LogoImg from '../../assets/logoImg.png';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -32,9 +32,9 @@ export default function Register() {
     };
 
     try {
-      const response = await api.post('users', data);
+      await api.post('users', data);
 
-      alert(`Cadastro feito com suceso: ${response.status}`);
+      alert(`Cadastro feito com suceso!`);
 
       history.push('/');
     } catch (err) {

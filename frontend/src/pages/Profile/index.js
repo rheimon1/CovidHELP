@@ -7,7 +7,7 @@ import api from '../../services/api';
 
 import './styles.css';
 
-import logoImg from '../../assets/logo.svg';
+//import logoImg from '../../assets/logo.svg';
 
 export default function Profile() {
   const [incidents, setincidents] = useState([]);
@@ -47,10 +47,12 @@ export default function Profile() {
     history.push('/');
   }
 
+  // <img src={logoImg} alt="Covid"/> -->
+
   return (
     <div className="profile-container">
       <header>
-        <img src={logoImg} alt="Covid"/>
+        
         <span>Bem vindo, {userName}</span>
 
         <Link className="button" to="/incidents/new">Cadastrar pedido</Link>
