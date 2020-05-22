@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt');
-
 const connection = require('../database/connection');
 
 const encryptPassword = require('../utils/encryptPassword')
@@ -12,12 +10,9 @@ module.exports = {
   },
 
   async create(request, response) {
-    let { name, email, realPassword, whatsapp, city, uf } = request.body;
+    let { name, email, password, whatsapp, city, uf } = request.body;
 
-    console.log(name, email, realPassword, whatsapp, city, uf);
-    
-
-    let {password, salt} = encryptPassword(realPassword);
+    let {password} = encryptPassword(realPassword);
 
     await connection('users').insert({
       name,
@@ -25,8 +20,7 @@ module.exports = {
       password,
       whatsapp,
       city,
-      uf,
-      salt
+      uf
     }).then(_ => response.status(204).send())
   }
 }
