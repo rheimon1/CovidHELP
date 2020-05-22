@@ -16,7 +16,7 @@ routes.get('/profile/', authMiddleware, ProfileController.index);
 
 routes.post('/session', SessionController.create);
 
-routes.get('/incidents', authMiddleware, IncidentController.index);
+routes.get('/incidents', IncidentController.index);
 routes.post('/incidents', authMiddleware, IncidentController.create);
 routes.delete('/incidents/:id', authMiddleware, IncidentController.delete);
 
