@@ -12,7 +12,16 @@ module.exports = {
   async create(request, response) {
     let { name, email, password, whatsapp, city, uf } = request.body;
 
-    let {password} = encryptPassword(realPassword);
+    const userFromDb = await connection('users')
+      .where('email', email)
+      .first()
+
+    if(userFromDb) {
+      return response.status(401).json({ error: 'User already registered!' })
+    }
+
+    data = encryptPassword(password);
+    password = data.password
 
     await connection('users').insert({
       name,
