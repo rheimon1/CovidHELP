@@ -12,6 +12,7 @@ module.exports = {
   async create(request, response) {
     let { name, email, password, whatsapp, city, uf } = request.body;
 
+<<<<<<< HEAD
     const userFromDb = await connection('users')
       .where('email', email)
       .first()
@@ -22,6 +23,9 @@ module.exports = {
 
     data = encryptPassword(password);
     password = data.password
+=======
+    let {password} = encryptPassword(realPassword);
+>>>>>>> 901e9ebb9976980ee6dbd6c0549eb739236f9a7b
 
     await connection('users').insert({
       name,
