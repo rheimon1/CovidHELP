@@ -17,6 +17,8 @@ export default function NewOrder() {
 
   const token = getToken();
 
+  const User_id = localStorage.getItem('userID');
+
   async function handleNewOrder(e) {
     e.preventDefault();
 
@@ -25,11 +27,11 @@ export default function NewOrder() {
       description,
     };
 
-
     try {
       await api.post('incidents', data, {
         headers: {
           Authorization: token,
+          User_id
         }
       })
 
