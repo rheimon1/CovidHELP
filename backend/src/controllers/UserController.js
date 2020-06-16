@@ -38,6 +38,6 @@ module.exports = {
       whatsapp,
       city,
       uf
-    }).then(_ => response.status(204).send())
+    }).then(result => response.status(204).json(result));
   }
 }
