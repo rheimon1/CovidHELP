@@ -4,14 +4,14 @@ module.exports = {
   async index(request, response) {
     const { page = 1 } = request.query;
 
-    const [count] = await connection('incidents').count();
+    const [count] = await connection('orders').count();
 
-    const incidents = await connection('incidents')
-    .join('users', 'users.id', '=', 'incidents.user_id')
+    const orders = await connection('orders')
+    .join('users', 'users.id', '=', 'orders.user_id')
     .limit(5)
     .offset((page - 1) * 5)
     .select([
-      'incidents.*', 
+      'orders.*', 
       'users.name', 
       'users.email', 
       'users.whatsapp', 
@@ -19,18 +19,17 @@ module.exports = {
       'users.uf'
     ]);
 
-    response.header('X-Total-Count', count['count(*)']);
+    response.header('X-Total-Count', count['count(*)']-1);
 
-    return response.json(incidents);
+    return response.json(orders);
   },
 
    async create(request, response) {
      const { title, description } = request.body;
-     const dataUser = response.getHeader('x-access');
-    
-     const user_id = dataUser.sub.id;
 
-     const [id] = await connection('incidents').insert({
+    const user_id = request.headers['user_id'];
+
+     const [id] = await connection('orders').insert({
         title,
         description,
         user_id,
@@ -41,19 +40,18 @@ module.exports = {
  
    async delete(request, response) {
      const { id } = request.params;
-     const dataUser = response.getHeader('x-access');
-    
-     const user = dataUser.sub;
+     
+     const user_id = request.headers['user_id'];
 
-     const incident = await connection('incidents')
+     const incident = await connection('orders')
       .where('id', id)
       .select('user_id')
       .first();
     
-    if(incident.user_id != user.id) 
+    if(incident.user_id != user_id) 
       return response.status(401).json({ error: 'Operation not permitted.' });
       
-    await connection('incidents').where('id', id).delete();
+    await connection('orders').where('id', id).delete();
 
     return response.status(204).send();
    }

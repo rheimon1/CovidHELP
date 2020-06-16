@@ -5,7 +5,7 @@ import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
 
 import api from '../../services/api';
 
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/logoImg.png';
 
 import styles from './styles';
 
@@ -51,7 +51,7 @@ export default function Orders() {
       <View style={styles.header}>
         <Image source={logoImg} />
         <Text style={styles.headerText}>
-          Total de <Text style={styles.headerTextBold}>{total} casos</Text>.
+          Total de <Text style={styles.headerTextBold}>{total} pedidos</Text>.
         </Text> 
       </View>   
 

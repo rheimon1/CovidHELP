@@ -1,6 +1,7 @@
 const connection = require('../database/connection');
 
 const encryptPassword = require('../utils/encryptPassword')
+const generateUniqueId = require('../utils/generateUniqueId');
 
 module.exports = {
   async index(request, response) {
@@ -10,7 +11,11 @@ module.exports = {
   },
 
   async create(request, response) {
-    let { name, email, password, whatsapp, city, uf } = request.body;
+    let { name, email, password, confirmPassword, whatsapp, city, uf } = request.body;
+
+    if(password != confirmPassword) {
+      return response.status(401).json({ error: 'Passwords not match' });
+    }
 
     const userFromDb = await connection('users')
       .where('email', email)
@@ -23,13 +28,16 @@ module.exports = {
     data = encryptPassword(password);
     password = data.password
 
+    const id = generateUniqueId();
+
     await connection('users').insert({
+      id,
       name,
       email,
       password,
       whatsapp,
       city,
       uf
-    }).then(_ => response.status(204).send())
+    }).then(result => response.status(204).json(result));
   }
 }

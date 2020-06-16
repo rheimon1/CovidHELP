@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
 
-import { getToken } from '../../services/auth';
+import { getToken, logout } from '../../services/auth';
 import api from '../../services/api';
 
 import './styles.css';
@@ -16,12 +16,15 @@ export default function Profile() {
 
   const token = getToken();
 
+  const User_id = localStorage.getItem('userID');
+
   const userName = localStorage.getItem('userName');
 
   useEffect(() => {
     api.get('profile', {
       headers: {
         Authorization: token,
+        User_id
       }
     }).then(response => {
       setincidents(response.data);
@@ -33,6 +36,7 @@ export default function Profile() {
       await api.delete(`incidents/${id}`, {
         headers: {
           Authorization: token,
+          User_id
         }
       });
       setincidents(incidents.filter(incident => incident.id !== id)) 
@@ -42,8 +46,7 @@ export default function Profile() {
   }
 
   function handleLogout() {
-    localStorage.clear();
-
+    logout();
     history.push('/');
   }
 

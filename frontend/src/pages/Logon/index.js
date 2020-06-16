@@ -7,31 +7,34 @@ import { login } from '../../services/auth';
 
 import './styles.css';
 
-import covidImg from '../../assets/logoImg.png';
+import logo from '../../assets/logoImg.png';
 
 export default function Logon() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const history = useHistory();
 
   async function handleLogin(e) {
     e.preventDefault();
 
     if (!email || !password) {
+      setError('Preencha e-mail e senha para continuar!')
       alert('Preencha e-mail e senha para continuar!');
     } else {
       try{
         const response = await api.post('session', { email, password });
         
-        const { id, name } = response.data.jwtData.sub; 
+        const { id, name, token } = response.data; 
 
         localStorage.setItem('userName', name);
         localStorage.setItem('userID', id);
 
-        login(response.data.token);
+        login(token);
         
         history.push('/profile');
       } catch (err) {
+        setError('Houve um problema com o login, verifique suas credenciais.')
         alert('Falha no login, tente novamente');
       }
     }
@@ -40,6 +43,8 @@ export default function Logon() {
   return (
     <div className="logon-container">
       <section className="form">
+        <img src={logo} alt="Covid"/>
+        { error && <p>{error}</p> }
         <form onSubmit={handleLogin} >
           <h1>Faça seu logon</h1>
 
@@ -57,7 +62,7 @@ export default function Logon() {
           />
 
           <button className="button" type="submit">Entrar</button>
-
+          <hr />
           <Link className="back-link" to="/register">
             <FiLogIn size={16} color="#451269" />
             Não tenho cadastro
@@ -65,7 +70,7 @@ export default function Logon() {
         </form>
       </section>
 
-      <img src={covidImg} alt="Covid"/>
+      
     </div>
   );
 }

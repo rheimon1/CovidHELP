@@ -13,7 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-input, button, textarea {
+input, button, textarea, select {
   font: 400 18px Roboto, sans-serif;
 }
 

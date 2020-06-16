@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/logoImg.png';
 
 import styles from './styles';
 
@@ -28,7 +28,7 @@ export default function Detail() {
   }
 
   function sendWhatsapp() {
-    Linking.openURL(`whatsapp://send?phone=${order.whatsapp}&text=${message}`);
+    Linking.openURL(`whatsapp://send?phone=55${order.whatsapp}&text=${message}`);
   }
   
   return(
@@ -47,6 +47,9 @@ export default function Detail() {
             
         <Text style={styles.orderProperty}>PEDIDO: </Text>
         <Text style={styles.orderValue}>{order.title} </Text>
+
+        <Text style={styles.orderProperty}>DESCRIÇÃO: </Text>
+        <Text style={styles.orderValue}>{order.description} </Text>
       </View>
 
       <View style={styles.contactBox}>

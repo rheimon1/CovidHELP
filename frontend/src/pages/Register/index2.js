@@ -17,8 +17,6 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [error, setError] = useState('');
-
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
 
@@ -82,54 +80,44 @@ export default function Register() {
   }
 
   return (
-    
-
-
     <div className="register-container">
-      <header>
-        <img src={LogoImg} alt="CovidHelp"/>
-        <Link to="/">
-          <FiArrowLeft />
-          Voltar para home
-        </Link>
-      </header>
+      <div className="content">
+        <section>
+          <img src={LogoImg} alt="CovidHelp"/>
 
-      <form onSubmit={handleRegister}>
-        <h1>Cadastro</h1>
-        <p>Faça seu cadastro e entre na plataforma</p>
+          <h1>Cadastro</h1>
+          <p>Faça seu cadastro e entre na plataforma</p>
 
-        { error && <p>{error}</p> }
-        <fieldset>
-          <div className="field">
-            
+          <Link className="back-link" to="/">
+            <FiArrowLeft size={16} color="#451269" />
+            Não tenho cadastro
+          </Link>
+        </section>
+
+          <form onSubmit={handleRegister}>
             <input
-              name="name"
-              type="text"
               placeholder="Nome Completo"
-              value={name} 
-              id="name"
-              onChange={e => setName(e.target.value)} />
-          </div>
+              value={name}
+              onChange={e => setName(e.target.value)} 
+            />
 
-          <div className="field">
-            <input 
+
+            <input
               type="email"
               placeholder="E-mail"
               value={email}
-              onChange={e => setEmail(e.target.value)} 
+              onChange={e => setEmail(e.target.value)}
             />
-          </div>
-          <div className="field">
+
             <input 
-              type="text"
               placeholder="WhatsApp"
               value={whatsapp}
-              onChange={e => setWhatsapp(e.target.value)} 
+              onChange={e => setWhatsapp(e.target.value)}
             />
-          </div>
-          <div className="field-group">
+
             <div className="field">
-              <select
+              <select 
+                name="uf" 
                 id="uf" 
                 value={selectedUf} 
                 onChange={handleSelectUf}
@@ -142,40 +130,35 @@ export default function Register() {
             </div>
             <div className="field">
               <select 
-                  name="city" 
-                  id="city"
-                  value={selectedCity}
-                  onChange={handleSelectCity}
-                >
-                  <option value="0">Selecione uma cidade</option>
-                  {cities.map(city => (
-                    <option key={city} value={city}>{city}</option>
-                  ))}
+                name="city" 
+                id="city"
+                value={selectedCity}
+                onChange={handleSelectCity}
+              >
+                <option value="0">Selecione uma cidade</option>
+                {cities.map(city => (
+                  <option key={city} value={city}>{city}</option>
+                ))}
               </select>
             </div>
-          </div>
-          <div className="field-group">
-            <div className="field">
-              <input 
-                type="password" 
-                placeholder="Senha"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="field">
-              <input 
-                type="password" 
-                placeholder="Confirme sua senha"
-                value={confirmPassword} 
-                onChange={e => setConfirmPassword(e.target.value)} 
-              />
-            </div>
-          </div>
-        </fieldset>
 
-        <button type="submit">Cadastrar</button>
-      </form>      
+            <input
+              type="password" 
+              placeholder="Senha"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+
+            <input
+              type="password" 
+              placeholder="Confirme sua senha"
+              value={confirmPassword} 
+              onChange={e => setConfirmPassword(e.target.value)} 
+            />
+
+            <button className="button" type="submit">Cadastrar</button>
+          </form>
+      </div>
     </div>
   );
 }
