@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
 
-import { getToken, logout } from '../../services/auth';
+import { useAuth } from '../../contexts/auth';
+
 import api from '../../services/api';
 
 import './styles.css';
@@ -11,34 +12,24 @@ import './styles.css';
 
 export default function Profile() {
   const [incidents, setincidents] = useState([]);
+  const { user, signOut } = useAuth();
 
   const history = useHistory();
 
-  const token = getToken();
-
-  const User_id = localStorage.getItem('userID');
-
-  const userName = localStorage.getItem('userName');
-
   useEffect(() => {
-    api.get('profile', {
-      headers: {
-        Authorization: token,
-        User_id
-      }
-    }).then(response => {
-      setincidents(response.data);
+    //let mounted = true;
+    api.get('profile').then(response => {
+      //if(mounted) {
+        setincidents(response.data);
+      //}
     })
-  }, [token]);
+
+    //return () => mounted = false;
+  }, [incidents]);
 
   async function handleDeleteIncident(id) {
     try {
-      await api.delete(`incidents/${id}`, {
-        headers: {
-          Authorization: token,
-          User_id
-        }
-      });
+      await api.delete(`incidents/${id}`);
       setincidents(incidents.filter(incident => incident.id !== id)) 
     } catch (error) {
       alert('Erro ao deletar pedido, tente novamente.');
@@ -46,8 +37,7 @@ export default function Profile() {
   }
 
   function handleLogout() {
-    logout();
-    history.push('/');
+    signOut();
   }
 
   // <img src={logoImg} alt="Covid"/> -->
@@ -56,7 +46,7 @@ export default function Profile() {
     <div className="profile-container">
       <header>
         
-        <span>Bem vindo, {userName}</span>
+        <span>{user?.name}</span>
 
         <Link className="button" to="/incidents/new">Cadastrar pedido</Link>
         <button onClick={handleLogout} type="button">

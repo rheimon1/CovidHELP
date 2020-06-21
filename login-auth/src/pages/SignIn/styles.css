@@ -1,0 +1,9 @@
+.container  {
+  width: 100%;
+  max-width: 1180px;
+}
+
+.container header {
+  display: flex;
+  align-items: center;
+}

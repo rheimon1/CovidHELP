@@ -1,4 +1,20 @@
 import React from 'react';
+
+import { useAuth } from '../contexts/auth';
+
+import AuthRoutes from '../routes/auth.routes';
+import AppRoutes from '../routes/app.routes';
+
+const Routes = () => {
+  const { signed } = useAuth();
+
+  return signed ? <AppRoutes /> : <AuthRoutes />;
+};
+
+export default Routes;
+
+
+/* import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import { isAuthenticated } from './services/auth';
@@ -33,4 +49,4 @@ export default function Routes() {
       </Switch>
     </BrowserRouter>
   );
-}
+} */

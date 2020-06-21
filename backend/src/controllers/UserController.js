@@ -38,6 +38,37 @@ module.exports = {
       whatsapp,
       city,
       uf
-    }).then(result => response.status(204).json(result));
+    }).then(_ => response.status(204).json({ }));
+  },
+
+  async delete(request, response) {
+    try {
+      const user_id = request.headers['user_id'];
+
+      await connection('users')
+        .where('id', user_id)
+        .delete()
+        .then(_ => response.status(204).json({ }));
+    } catch (err) {
+      return response.status(401).json({ err });
+    }
+  },
+
+  async update(request, response) {
+    try {
+      
+      const user_id = request.headers['user_id'];
+      console.log(user_id);
+
+      const user = request.body;
+
+      await connection('users')
+        .where('id', user_id)
+        .update(user)
+        .then(_ => response.status(204).json({ }));
+
+    } catch (err) {
+      return response.status(401).json({ err });
+    }
   }
 }

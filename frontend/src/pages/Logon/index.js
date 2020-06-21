@@ -2,8 +2,7 @@ import React, { useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 
-import api from '../../services/api';
-import { login } from '../../services/auth';
+import { useAuth } from '../../contexts/auth';
 
 import './styles.css';
 
@@ -13,7 +12,9 @@ export default function Logon() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const history = useHistory();
+  //const history = useHistory();
+
+  const { signIn } = useAuth();
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -23,16 +24,7 @@ export default function Logon() {
       alert('Preencha e-mail e senha para continuar!');
     } else {
       try{
-        const response = await api.post('session', { email, password });
-        
-        const { id, name, token } = response.data; 
-
-        localStorage.setItem('userName', name);
-        localStorage.setItem('userID', id);
-
-        login(token);
-        
-        history.push('/profile');
+        signIn(email, password);
       } catch (err) {
         setError('Houve um problema com o login, verifique suas credenciais.')
         alert('Falha no login, tente novamente');

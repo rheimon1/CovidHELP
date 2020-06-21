@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft  } from 'react-icons/fi';
 
 import api from '../../services/api';
-import { getToken } from '../../services/auth';
 
 import './styles.css';
 
@@ -15,10 +14,6 @@ export default function NewOrder() {
 
   const history = useHistory();
 
-  const token = getToken();
-
-  const User_id = localStorage.getItem('userID');
-
   async function handleNewOrder(e) {
     e.preventDefault();
 
@@ -28,14 +23,9 @@ export default function NewOrder() {
     };
 
     try {
-      await api.post('incidents', data, {
-        headers: {
-          Authorization: token,
-          User_id
-        }
-      })
+      await api.post('incidents', data);
 
-      history.push('/profile');
+      history.push('/');
     } catch (error) {
       alert('Erro ao cadastrar pedido, tente novamente.')  
     }
