@@ -4,8 +4,10 @@
   "description": "Sistema para ajudar no combate às consequências do COVID-19.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/server.js",
-    "test": "cross-env NODE_ENV=test jest"
+    "start": "node src/server.js",
+    "test": "cross-env NODE_ENV=test jest",
+    "migrate": "knex migrate:latest",
+    "unmigrate": "knex migrate:rollback"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
+    "pg": "^8.2.1",
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {

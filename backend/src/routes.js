@@ -11,15 +11,20 @@ const validation = require('./utils/validation');
 
 const routes = express.Router();
 
-routes.get('/users', UserController.index);
 routes.post('/session', validation.sessionCreate, SessionController.create);
-routes.post('/users', validation.usersCreate, UserController.create);
 routes.get('/orders', validation.ordersIndex, OrdersController.index);
+
+
+routes.get('/users', UserController.index);
+routes.post('/users', validation.usersCreate, UserController.create);
+routes.put('/users', UserController.update);
+routes.delete('/users', UserController.delete);
 
 routes.use(authMiddleware);
 
-routes.get('/profile/', validation.profile, ProfileController.index);
+routes.get('/profile', validation.profile, ProfileController.index);
 routes.post('/orders', validation.ordersCreate, OrdersController.create);
-routes.delete('/orders/:id', validation.ordersDelete, OrdersController.delete);
+routes.delete('/orders', validation.ordersDelete, OrdersController.delete);
+routes.put('/orders', OrdersController.update);
 
 module.exports = routes;
