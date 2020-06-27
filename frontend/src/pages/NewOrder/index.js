@@ -23,7 +23,7 @@ export default function NewOrder() {
     };
 
     try {
-      await api.post('incidents', data);
+      await api.post('orders', data);
 
       history.push('/');
     } catch (error) {

@@ -1,13 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import api from '../services/api';
 
-const AuthContext = createContext({
-   signed: Boolean,
-   user: Object | null,
-   signOut: null,
-   signIn: Promise
-
-});
+const AuthContext = createContext(() => {}, []);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({} | null);
@@ -28,16 +22,15 @@ const AuthProvider = ({ children }) => {
     loadStorageData();
   }, []);
 
-  async function signIn(email, password) {
-    try {
-      const response = await api.post('session', { email, password }); 
-      setUser(response.data.user);
+  async function signIn(data) {
+    try {    
+      setUser(data.user);
 
-      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
-      api.defaults.headers.user_id = response.data.user.id;
+      api.defaults.headers.Authorization = `Bearer ${data.token}`;
+      api.defaults.headers.user_id = data.user.id;
 
-      localStorage.setItem('@FSIAuth:user', JSON.stringify(response.data.user));
-      localStorage.setItem('@FSIAuth:token', response.data.token);
+      localStorage.setItem('@FSIAuth:user', JSON.stringify(data.user));
+      localStorage.setItem('@FSIAuth:token', data.token);
     } catch (error) {
       alert('Falha no login, tente novamente')
     }

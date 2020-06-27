@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 
 import { useAuth } from '../../contexts/auth';
+import api from '../../services/api';
 
 import './styles.css';
 
@@ -24,7 +25,8 @@ export default function Logon() {
       alert('Preencha e-mail e senha para continuar!');
     } else {
       try{
-        signIn(email, password);
+        const { data } = await api.post('session', { email, password }); 
+        signIn(data);
       } catch (err) {
         setError('Houve um problema com o login, verifique suas credenciais.')
         alert('Falha no login, tente novamente');
@@ -61,8 +63,6 @@ export default function Logon() {
           </Link>
         </form>
       </section>
-
-      
     </div>
   );
 }
