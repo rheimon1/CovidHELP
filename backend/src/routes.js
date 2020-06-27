@@ -17,14 +17,14 @@ routes.get('/orders', validation.ordersIndex, OrdersController.index);
 
 routes.get('/users', UserController.index);
 routes.post('/users', validation.usersCreate, UserController.create);
-routes.put('/users', UserController.update);
-routes.delete('/users', UserController.delete);
+routes.put('/users/:id', UserController.update);
+routes.delete('/users/:id', UserController.delete);
 
 routes.use(authMiddleware);
 
 routes.get('/profile', validation.profile, ProfileController.index);
 routes.post('/orders', validation.ordersCreate, OrdersController.create);
-routes.delete('/orders', validation.ordersDelete, OrdersController.delete);
-routes.put('/orders', OrdersController.update);
+routes.delete('/orders/:id', validation.ordersDelete, OrdersController.delete);
+routes.put('/orders/:id', OrdersController.update);
 
 module.exports = routes;
