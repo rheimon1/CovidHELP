@@ -15,7 +15,7 @@
 }
 
 .logon-container section.form img {
-  width: 250px;
+  width: 200px;
   margin: 10px 0 40px;
 }
 
@@ -69,43 +69,3 @@
 }
 
 
-
-
-/**
-.logon-container {
-  width: 100%;
-  max-width: 1120px;
-  height: 100vh;
-  margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.logon-container header {
-  margin: 48px 0px;
-}
-
-.logon-container section.form {
-  flex: 1;
-
-  width: 100%;
-  max-width: 350px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 350px;
-}
-
-.logon-container section.form form h1 {
-  font-size: 32px;
-  margin-bottom: 32px;
-}
-
-.logon-container section.form form input {
-  margin-bottom: 8px;
-}
-
-*/
