@@ -1,42 +1,33 @@
 .register-container {
-  width: 100%;
-  max-width: 1100px;
-
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.register-container header {
-  margin-top: 48px;
-
+.register-container section.form {
+  margin-top: 80px;
+  width: 600px;
+  background: #fff;
+  padding: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
 }
 
-.register-container header a {
-  color: var(--title-color);
-  font-weight: bold;
-  text-decoration: none;
+.register-container section.form img {
+  width: 250px;
+  margin: 10px 0 40px;
+}
 
+.register-container section.form h1 {
+  margin-bottom: 20px;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
-.register-container header a svg {
-  margin-right: 16px;
-  color: var(--primary-color);
-}
 
-.register-container section.form p {
-  color: #ff3333;
-  margin-bottom: 15px;
-  border: 1px solid #ff3333;
-  padding: 10px;
-  width: 100%;
-  text-align: center;
-}
 
-.register-container form {
+/* .register-container form {
   margin: 80px auto;
   padding: 64px;
   max-width: 540px;
@@ -45,19 +36,16 @@
 
   display: flex;
   flex-direction: column;
-}
+} */
 
-.register-container form h1 {
-  font-size: 36px;
-}
 
-.register-container form fieldset {
-  margin-top: 64px;
+.register-container section.form fieldset {
+  margin-top: 32px;
   min-inline-size: auto;
   border: 0;
 }
 
-.register-container form legend {
+.register-container section.form legend {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -65,114 +53,122 @@
   margin-bottom: 40px;
 }
 
-.register-container form legend h2 {
+.register-container section.form legend h2 {
   font-size: 24px;
 }
 
-.register-container form legend span {
+.register-container section.form legend span {
   font-size: 14px;
   font-weight: normal;
   color: var(--text-color);
 }
 
-.register-container form .field-group {
+.register-container section.form .field-group {
   flex: 1;
   display: flex;
 }
 
-.register-container form .field {
+.register-container section.form .field {
   flex: 1;
-
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
-.register-container form .field input[type=text],
-.register-container form .field input[type=email],
-.register-container form .field input[type=password],
-.register-container form .field input[type=number] {
+.register-container section.form .field input[type=text],
+.register-container section.form .field input[type=email],
+.register-container section.form .field input[type=password],
+.register-container section.form .field input[type=number] {
   flex: 1;
-  background: #F0F0F5;
-  border-radius: 8px;
-  border: 0;
-  padding: 16px 24px;
+  height: 46px;
+  padding: 0 20px;
+  color: #777;
   font-size: 16px;
-  color: #6C6C80;
+  width: 100%;
+  border: 1px solid #ddd;
 }
 
-.register-container form .field select {
+.register-container section.form .field select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   flex: 1;
-  background: #F0F0F5;
   border-radius: 8px;
-  border: 0;
+  border: 1px solid #ddd;
   padding: 16px 24px;
   font-size: 16px;
-  color: #6C6C80;
+  color: #777;
+  background-color: #fff;
 }
 
-.register-container form .field input::placeholder {
+.register-container section.form .field input::placeholder {
   color: #A0A0B2;
 }
 
-.register-container form .field label {
+.register-container section.form .field label {
   font-size: 14px;
   margin-bottom: 8px;
 }
 
-.register-container form .field :disabled {
+.register-container section.form .field :disabled {
   cursor: not-allowed;
 }
 
-.register-container form .field-group .field + .field {
+.register-container section.form .field-group .field + .field {
   margin-left: 24px;
 }
 
-.register-container form .field-group input + input {
+.register-container section.form .field-group input + input {
   margin-left: 24px;
 }
 
-.register-container form .field-check {
+.register-container section.form .field-check {
   flex-direction: row;
   align-items: center;
 }
 
-.register-container form .field-check input[type=checkbox] {
+.register-container section.form .field-check input[type=checkbox] {
   background: #F0F0F5;
 }
 
-.register-container form .field-check label {
+.register-container section.form .field-check label {
   margin: 0 0 0 8px;
 }
 
-.register-container form .leaflet-container {
+.register-container section.form .leaflet-container {
   width: 100%;
   height: 350px;
   border-radius: 8px;
   margin-bottom: 24px;
 }
 
-.register-container form button {
-  width: 100%;
-  height: 56px;
-  background: #fc6963;
-  border-radius: 8px;
-  color: #FFF;
-  font-weight: bold;
+.register-container section.form button {
+  color: #fff;
   font-size: 16px;
+  background: #fc6963;
+  height: 56px;
   border: 0;
-  align-self: center;
-  margin-top: 40px;
-  transition: background-color 0.2s;
-  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .register-container form button:hover {
   opacity: 0.8;
 }
+
+.register-container section.form hr {
+  margin: 20px 0;
+  border: none;
+  border-bottom: 1px solid #cdcdcd;
+  width: 100%;
+}
+
+.register-container section.form a {
+  font-size: 16;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 
 
 
