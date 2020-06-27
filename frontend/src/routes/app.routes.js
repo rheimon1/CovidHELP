@@ -24,7 +24,7 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Profile} />
-        <Route path="/incidents/new" component={NewOrder} />
+        <Route path="/orders/new" component={NewOrder} />
       </Switch>
       <ModalContainer />
     </BrowserRouter>
