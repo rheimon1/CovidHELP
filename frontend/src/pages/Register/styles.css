@@ -5,8 +5,8 @@
 }
 
 .register-container section.form {
-  margin-top: 80px;
-  width: 700px;
+  margin-top: 60px;
+  width: 580px;
   background: #fff;
   padding: 20px;
   display: flex;
@@ -15,8 +15,8 @@
 }
 
 .register-container section.form img {
-  width: 200px;
-  margin: 10px 0 40px;
+  width: 150px;
+  margin: 5px 0 15px;
 }
 
 .register-container section.form h1 {
@@ -29,7 +29,7 @@
   margin-top: 32px;
   min-inline-size: auto;
   border: 0;
-  width: 550px;
+  width: 500px;
 }
 
 .register-container section.form legend {
@@ -67,12 +67,13 @@
 .register-container section.form .field input[type=password],
 .register-container section.form .field input[type=number] {
   flex: 1;
-  height: 46px;
   padding: 0 20px;
   color: #777;
-  font-size: 16px;
+  font-size: 15px;
   width: 100%;
   border: 1px solid #ddd;
+  min-height: 40px;
+  margin-bottom: -5px;
 }
 
 .register-container section.form .field select {
@@ -82,10 +83,18 @@
   flex: 1;
   border-radius: 8px;
   border: 1px solid #ddd;
-  padding: 16px 24px;
+  padding: 14px 24px;
   font-size: 16px;
-  color: #777;
+  color: #A0A0B2;
   background-color: #fff;
+  margin-bottom: -5px;
+  max-width: 80%;
+  min-width: 240px;
+  max-height: 56px;
+}
+
+.register-container section.form .field select + select {
+  margin-left: 24px;
 }
 
 .register-container section.form .field input::placeholder {
@@ -102,11 +111,11 @@
 }
 
 .register-container section.form .field-group .field + .field {
-  margin-left: 24px;
+  margin-left: 18px;
 }
 
 .register-container section.form .field-group input + input {
-  margin-left: 24px;
+  margin-left: 18px;
 }
 
 .register-container section.form .field-button {
@@ -132,6 +141,7 @@
   font-size: 18px;
   line-height: 60px;
   transition: filter 0.2s;
+  max-height: 60px;
 }
 
 .register-container section.form p {
@@ -159,7 +169,8 @@
 }
 
 .register-container section.form a {
-  font-size: 16;
+  margin-top: -3px;
+  font-size: 16px;
   font-weight: bold;
   text-decoration: none;
 }
