@@ -32,7 +32,7 @@ export default function Profile() {
   async function handleDeleteOrder(id) {
     try {
       await api.delete(`orders/${id}`);
-      
+
       setOrders(orders.filter(order => order.id !== id))
     } catch (error) {
       alert('Erro ao deletar pedido, tente novamente.');

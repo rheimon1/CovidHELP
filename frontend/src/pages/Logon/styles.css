@@ -53,6 +53,7 @@
   border: 0;
   border-radius: 5px;
   width: 100%;
+  
 }
 
 .logon-container section.form hr {
@@ -63,6 +64,7 @@
 }
 
 .logon-container section.form a {
+  margin-top: -3px;
   font-size: 16;
   font-weight: bold;
   text-decoration: none;
