@@ -1,30 +1,137 @@
 .register-container {
-  width: 100%;
-  max-width: 1100px;
-
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.register-container header {
-  margin-top: 48px;
+.register-container section.form {
+  margin-top: 80px;
+  width: 700px;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.register-container section.form img {
+  width: 200px;
+  margin: 10px 0 40px;
+}
+
+.register-container section.form h1 {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.register-container section.form fieldset {
+  margin-top: 32px;
+  min-inline-size: auto;
+  border: 0;
+  width: 550px;
+}
+
+.register-container section.form legend {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 40px;
 }
 
-.register-container header a {
-  color: var(--title-color);
-  font-weight: bold;
-  text-decoration: none;
+.register-container section.form legend h2 {
+  font-size: 24px;
+}
 
+.register-container section.form legend span {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--text-color);
+}
+
+.register-container section.form .field-group {
+  flex: 1;
   display: flex;
-  align-items: center;
 }
 
-.register-container header a svg {
-  margin-right: 16px;
-  color: var(--primary-color);
+.register-container section.form .field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.register-container section.form .field input[type=text],
+.register-container section.form .field input[type=email],
+.register-container section.form .field input[type=password],
+.register-container section.form .field input[type=number] {
+  flex: 1;
+  height: 46px;
+  padding: 0 20px;
+  color: #777;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.register-container section.form .field select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 16px 24px;
+  font-size: 16px;
+  color: #777;
+  background-color: #fff;
+}
+
+.register-container section.form .field input::placeholder {
+  color: #A0A0B2;
+}
+
+.register-container section.form .field label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.register-container section.form .field :disabled {
+  cursor: not-allowed;
+}
+
+.register-container section.form .field-group .field + .field {
+  margin-left: 24px;
+}
+
+.register-container section.form .field-group input + input {
+  margin-left: 24px;
+}
+
+.register-container section.form .field-button {
+  display: flex;
+  flex: 1;
+}
+
+.register-container section.form .field-button button {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  background: #fc6963;
+  border: 0;
+  border-radius: 8px;
+  color: #FFF;
+  font-weight: 700;
+  margin-top: 16px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 60px;
+  transition: filter 0.2s;
 }
 
 .register-container section.form p {
@@ -36,216 +143,23 @@
   text-align: center;
 }
 
-.register-container form {
-  margin: 80px auto;
-  padding: 64px;
-  max-width: 540px;
-  background: #FFF;
-  border-radius: 8px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.register-container form h1 {
-  font-size: 36px;
-}
-
-.register-container form fieldset {
-  margin-top: 64px;
-  min-inline-size: auto;
-  border: 0;
-}
-
-.register-container form legend {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.register-container form legend h2 {
-  font-size: 24px;
-}
-
-.register-container form legend span {
-  font-size: 14px;
-  font-weight: normal;
-  color: var(--text-color);
-}
-
-.register-container form .field-group {
-  flex: 1;
-  display: flex;
-}
-
-.register-container form .field {
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 24px;
-}
-
-.register-container form .field input[type=text],
-.register-container form .field input[type=email],
-.register-container form .field input[type=password],
-.register-container form .field input[type=number] {
-  flex: 1;
-  background: #F0F0F5;
-  border-radius: 8px;
-  border: 0;
-  padding: 16px 24px;
-  font-size: 16px;
-  color: #6C6C80;
-}
-
-.register-container form .field select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  flex: 1;
-  background: #F0F0F5;
-  border-radius: 8px;
-  border: 0;
-  padding: 16px 24px;
-  font-size: 16px;
-  color: #6C6C80;
-}
-
-.register-container form .field input::placeholder {
-  color: #A0A0B2;
-}
-
-.register-container form .field label {
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.register-container form .field :disabled {
-  cursor: not-allowed;
-}
-
-.register-container form .field-group .field + .field {
+.register-container section.form .field-button button + button {
   margin-left: 24px;
-}
-
-.register-container form .field-group input + input {
-  margin-left: 24px;
-}
-
-.register-container form .field-check {
-  flex-direction: row;
-  align-items: center;
-}
-
-.register-container form .field-check input[type=checkbox] {
-  background: #F0F0F5;
-}
-
-.register-container form .field-check label {
-  margin: 0 0 0 8px;
-}
-
-.register-container form .leaflet-container {
-  width: 100%;
-  height: 350px;
-  border-radius: 8px;
-  margin-bottom: 24px;
-}
-
-.register-container form button {
-  width: 100%;
-  height: 56px;
-  background: #fc6963;
-  border-radius: 8px;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 16px;
-  border: 0;
-  align-self: center;
-  margin-top: 40px;
-  transition: background-color 0.2s;
-  cursor: pointer;
 }
 
 .register-container form button:hover {
   opacity: 0.8;
 }
 
-
-
-
-
-/**
-.register-container {
+.register-container section.form hr {
+  margin: 20px 0;
+  border: none;
+  border-bottom: 1px solid #cdcdcd;
   width: 100%;
-  max-width: 1120px;
-  height: 100vh;
-  margin: 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.register-container .content {
-  width: 100%;
-  padding: 90px;
-  background: #f0f0f5;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.register-container section.form a {
+  font-size: 16;
+  font-weight: bold;
+  text-decoration: none;
 }
-
-.register-container .content section {
-  width: 100%;
-  max-width: 380px;
-}
-
-.register-container .content section h1 {
-  margin: 64px 0 32px;
-  font-size: 32px;
-}
-
-.register-container .content section p {
-  font-size: 18px;
-  color: #737380;
-  line-height: 32px;
-}
-
-.register-container .content form {
-  width: 100%;
-  max-width: 380px;
-}
-
-.register-container .content form input {
-  margin-top: 8px;
-}
-
-.register-container .content form .field {
-  margin-top: 8px;
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.register-container .content form .field select {
-  width: 100%;
- 
-  color: #737380;
-  border: 1px solid #dcdce6;
-  border-radius: 8px;
-  padding: 0 24px;
-  flex: 1;
-  background: #FFF; 
-  height: 60px;
-}
-*/ 
-
-
