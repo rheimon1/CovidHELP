@@ -11,26 +11,29 @@ import './styles.css';
 //import logoImg from '../../assets/logo.svg';
 
 export default function Profile() {
-  const [incidents, setincidents] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [error, setError] = useState('');
   const { user, signOut } = useAuth();
 
   const history = useHistory();
 
   useEffect(() => {
-    //let mounted = true;
+    let mounted = true;
+
     api.get('profile').then(response => {
-      //if(mounted) {
-        setincidents(response.data);
-      //}
-    })
+      if(mounted) {
+        setOrders(response.data);
+      }
+    });
 
-    //return () => mounted = false;
-  }, [incidents]);
+      return () => mounted = false;
+  }, [orders])
 
-  async function handleDeleteIncident(id) {
+  async function handleDeleteOrder(id) {
     try {
-      await api.delete(`incidents/${id}`);
-      setincidents(incidents.filter(incident => incident.id !== id)) 
+      await api.delete(`orders/${id}`);
+      
+      setOrders(orders.filter(order => order.id !== id))
     } catch (error) {
       alert('Erro ao deletar pedido, tente novamente.');
     }
@@ -48,24 +51,24 @@ export default function Profile() {
         
         <span>{user?.name}</span>
 
-        <Link className="button" to="/incidents/new">Cadastrar pedido</Link>
+        <Link className="button" to="/orders/new">Cadastrar pedido</Link>
         <button onClick={handleLogout} type="button">
-          <FiPower size={18} color="#451269" />
+          <FiPower size={18} color="#fc6963" />
         </button>
       </header>
 
       <h1>Pedidos cadastrados</h1>
 
       <ul>
-        {incidents.map(incident => ( 
-          <li key={incident.id}>
-            <strong>PEDIDO:</strong>
-            <p>{incident.title}</p>
+        {orders.map(order => ( 
+          <li key={order.id}>
+            <strong>PEDIDO</strong>
+            <p>{order.title}</p>
 
             <strong>DESCRIÇÃO</strong>
-            <p>{incident.description}</p>
+            <p>{order.description}</p>
 
-            <button onClick={() => handleDeleteIncident(incident.id)} type="button">
+            <button onClick={() => handleDeleteOrder(order.id)} type="button">
               <FiTrash2 size={20} color="#a8a8b3" />
             </button>
           </li>

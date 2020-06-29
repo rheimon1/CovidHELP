@@ -61,24 +61,27 @@ export default function Register() {
     const data = {
       name,
       email,
+      password,
+      confirmPassword,
       whatsapp,
       city: selectedCity,
       uf: selectedUf,
-      password,
-      confirmPassword
     };
 
-    console.log(data);
-
-    try {
-      await api.post('users', data);
-
-      alert(`Cadastro feito com suceso!`);
-
-      history.push('/');
-    } catch (err) {
-      alert('Erro no cadastro, tente novamente.');
+    if (!name || !email || !whatsapp  || !password || !confirmPassword) {
+      setError('Preencha todos os dados para continuar!');
+      alert('Preencha todos os dados para continuar!');
+    } else {
+      try {
+        await api.post('users', data)
+        alert('Cadastro feito com sucesso!');
+        history.push('/');
+      } catch (error) {
+        alert("Falha no cadastro, tente novamente.")
+        history.push('/register')
+      }
     }
+    
   }
 
   return (
@@ -101,6 +104,7 @@ export default function Register() {
                 onChange={e => setName(e.target.value)} />
             </div>
 
+            <div className="field-group">
             <div className="field">
               <input 
                 type="email"
@@ -116,6 +120,7 @@ export default function Register() {
                 value={whatsapp}
                 onChange={e => setWhatsapp(e.target.value)} 
               />
+            </div>
             </div>
             <div className="field-group">
               <div className="field">
@@ -163,12 +168,14 @@ export default function Register() {
               </div>
             </div>
           </fieldset>
-          <button type="submit">Cadastrar</button>
+          <div className="field-button">
+            <button type="submit" >Cadastrar</button>
+          </div>
           <hr />
-          <Link to="/">
+          <Link className="back-link" to="/">
             <FiArrowLeft />
             Voltar para login
-        </Link>             
+          </Link>             
         </form>  
       </section>      
     </div>
