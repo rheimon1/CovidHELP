@@ -21,7 +21,7 @@ module.exports = {
       'users.uf'
     ]);
 
-    response.header('X-Total-Count', count['count(*)']-1);
+    response.header('X-Total-Count', count['count']);
 
     return response.json(orders);
   },
