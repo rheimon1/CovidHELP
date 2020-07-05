@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://192.168.254.109:3333'
+  baseURL: 'https://rest-api-fsiproject.herokuapp.com'
 });
+
+//https://rest-api-fsiproject.herokuapp.com:80
 
 export default api;

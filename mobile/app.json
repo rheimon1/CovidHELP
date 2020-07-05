@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "Covid HELP",
+    "name": "CovidHELP",
+    "description": "Aplicação que mapeia pessoas que estão precisando de ajuda em meio ao momento de pandemia",
     "slug": "covidhelp",
+    "sdkVersion": "38.0.0",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,16 +14,24 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFF"
     },
-    "updates": {
+    "updates": { 
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fsiproject.covidhelp"
+    },
+    "android": {
+      "package": "com.fsiproject.covidhelp"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#FFF"
     }
   }
 }

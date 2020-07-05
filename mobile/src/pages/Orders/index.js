@@ -32,7 +32,7 @@ export default function Orders() {
 
     setLoading(true);
 
-    const response = await api.get('incidents', {
+    const response = await api.get('orders', {
       params: { page }
     });
 
@@ -55,7 +55,7 @@ export default function Orders() {
         </Text> 
       </View>   
 
-      <Text style={styles.title}>Bem-vindo!</Text>
+      <Text style={styles.title}>Bem-vindo!!!</Text>
       <Text style={styles.description}>Escolha um dos pedidos abaixos e ajude uma pessoa contra o COVID-19!</Text>
     
       <FlatList
