@@ -28,8 +28,3 @@ Aplicação desenvolvida como avaliação da disciplina de Fundamentos de Sistem
 - Página de cadastro de novos pedidos
 
 ![registerNewOrder_covidhelp](https://user-images.githubusercontent.com/49095811/86541676-0cd07e00-bee5-11ea-95bf-435c2a8c67ec.png)
-
-
-- Aplicativo mobile para Android
-
-![Screenshot_1593984277](https://user-images.githubusercontent.com/49095811/86543541-0a2a5480-bef6-11ea-85e5-462aefd8e651.png)
